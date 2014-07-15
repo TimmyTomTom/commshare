@@ -26,7 +26,7 @@
 
 
       <!-- Static navbar -->
-      <div class="navbar navbar-default" role="navigation" ng-controller="NavigationController">
+      <div class="navbar navbar-default navbar-fixed-top" role="navigation" ng-controller="NavigationController">
         <div class="container-fluid">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse"
@@ -44,33 +44,20 @@
                 Community Share
               </a>
               <a class="navbar-brand" href="#/home" ng-switch-when="true">
-                Community Share
+              <img src="http://i.imgur.com/iIE2wPf.png"  id="logo-id" />
               </a>
             </div>
           </div>
           <div class="navbar-collapse collapse" collapse="navCollapsed">
             <ul class="nav navbar-nav navbar-right">
               <li ng-show="Session.activeUser">
-                <a href="#/home">
-                  <i class="fa fa-home fa-lg"></i>
-                </a>
-              </li>
-              <li ng-show="Session.activeUser">
-                <a href="#/conversation/unviewed">
-                  {{ "{{" }}Session.activeUser.nUnviewedMessages{{ "}}" }} New Messages
-                </a>
-              </li>
-              <li ng-show="Session.activeUser">
                 <a href="#/user/{{ "{{" }}Session.activeUser.id{{ "}}" }}">
                   {{ "{{" }}Session.activeUser.name{{ "}}" }}
                 </a>
               </li>
-              <li class="dropdown" ng-show="Session.activeUser">
-                <a class="dropdown-toggle"><i class="fa fa-cog fa-lg"></i></a>
-                <ul class="dropdown-menu">
+              <li ng-show="Session.activeUser">
                   <li><a href="#/settings">Settings</a></li>
                   <li><a href="#/logout">Logout</a></li>
-                </ul>
               </li>
               <li><a href="#login" ng-show="!Session.activeUser">Login</a></li>
 

@@ -9,7 +9,7 @@
     </div>
     <div class="tab-content" active="needsTabActive">
       <div cs-educator-labels search="newSearch"></div>
-      <input type="submit" value="Continue" class="btn btn-default"
+      <input type="submit" value="Continue" class="btn btn-default  "
              ng-click="experienceTabActive=true; needsTabCompleted=true;"/>
     </div>
   </div>
@@ -28,7 +28,7 @@
              cs-question question="question"
              answers="answers"></div>
       </form>
-      <input type="submit" value="Continue" class="btn btn-default"
+      <input type="submit" value="Continue" class="btn btn-default light-green-button"
              ng-click="personalTabActive=true; experienceTabCompleted=true;"/>
     </div>
   </div>
@@ -44,7 +44,7 @@
             class="form-horizontal">
         <div cs-personal-settings></div>
       </form>
-      <input type="submit" value="Continue" class="btn btn-default"
+      <input type="submit" value="Continue" class="btn light-blue-button"
              ng-disabled="personalSettingsForm.$invalid"
              ng-click="accountTabActive=true; personalTabCompleted=true;"/>
     </div>
@@ -78,18 +78,18 @@
       </span>
     </div>
     <div class="tab-content">
-      
+
       <div cs-user-agreement></div>
-        
+
       <p>
-        I agree 
+        I agree
         <input type=checkbox ng-model="agreed"/><br/>
       </p>
-      
+
       <input type="submit" value="Sign Up!" class="btn btn-default"
              ng-disabled="personalSettingsForm.$invalid || accountSettingsForm.$invalid || (!agreed)"
              ng-click="submit();"/>
     </div>
   </div>
-  
+
 </div>

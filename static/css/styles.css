@@ -6,6 +6,7 @@ html {
 }
 body {
   margin: 0;
+  padding: 5% 0 0 0;
 }
 article,
 aside,
@@ -3441,6 +3442,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-bottom: 0;
   padding-left: 0;
   list-style: none;
+
 }
 .nav > li {
   position: relative;
@@ -6036,23 +6038,46 @@ text-align:center;
 
 }
 
-.message-btn{
+.search-btn{
   margin: 10px;
+}
+
+.fav-heart{
+  color:#BE1D2C;
+}
+
+.fav-btn{
+  background-image: -webkit-gradient(
+	linear,
+	right bottom,
+	right top,
+	color-stop(0.14, #EAEAEA),
+	color-stop(1, #FEFEFE)
+);
+background-image: -o-linear-gradient(top, #EAEAEA 14%, #FEFEFE 100%);
+background-image: -moz-linear-gradient(top, #EAEAEA 14%, #FEFEFE 100%);
+background-image: -webkit-linear-gradient(top, #EAEAEA 14%, #FEFEFE 100%);
+background-image: -ms-linear-gradient(top, #EAEAEA 14%, #FEFEFE 100%);
+background-image: linear-gradient(to top, #EAEAEA 14%, #FEFEFE 100%);
+
+text-align:center;
+margin-left:20%;
+
 }
 
 .page-header{
   text-align:center;
   border-bottom: solid;
   border-width: 1px;
-  margin: 10px;
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
 
 }
 
 .message-profile-img{
   width:64px;
   height:64px;
-  margin-left: 50px;
+  margin-left: 40px;
   margin-bottom: 10px;
   margin-right:10px;
 
@@ -6071,9 +6096,105 @@ text-align:center;
   margin-left: 25px;
   margin-right: 25px;
   border-color: #A7A9AC;
+  width:75%;
+  float:none;
+  margin: 0 auto;
+
 }
 
+.chat-box{
+  margin-top:15px !important;
+  width:75%;
+  float:none;
+  margin: 0 auto;
+
+}
+
+
+.chat-message{
+  margin-left: 25px;
+}
+
+.chat-button-area{
+  width:75%;
+  float:none;
+  margin: 0 auto;
+
+}
+
+
+.gradient-header{
+  background-image: -webkit-gradient(
+	linear,
+	left top,
+	left top,
+	color-stop(0, #FABF6C),
+	color-stop(1, #F9AF4F)
+);
+background-image: -o-linear-gradient(left top, #FABF6C 0%, #F9AF4F 100%);
+background-image: -moz-linear-gradient(left top, #FABF6C 0%, #F9AF4F 100%);
+background-image: -webkit-linear-gradient(left top, #FABF6C 0%, #F9AF4F 100%);
+background-image: -ms-linear-gradient(left top, #FABF6C 0%, #F9AF4F 100%);
+background-image: linear-gradient(to left top, #FABF6C 0%, #F9AF4F 100%);
+color:#ffffff;
+
+text-align:center;
+padding: 10px;
+
+text-shadow: rgba(3, 3, 3, 0.24) 0px 2px 0px;
+
+}
+
+
+#logo-id{
+  height:50px;
+  padding-bottom:20px;
+
+
+}
+
+
+.share-edit-btn{
+  margin-top:60%;
+
+}
 /*.chat-unit:last-of-type {
   border-bottom:none;
 
 }*/
+
+
+
+
+/*Kyle Beard*/
+
+.light-yellow-button {
+    background-color: #FDDF88;
+    color: #fff;
+    float: left;
+    width: 10%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.light-green-button {
+    background-color: #BDE787;
+    color: #fff;
+    width: 10%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+.light-blue-button {
+    background-color: #A7CAE5;
+    color: #fff;
+    width: 10%;
+    margin-left: 3%;
+    margin-right: 3%;
+}
+
+.share-result{
+border-bottom: solid;
+border-width: 1px;
+border-color: #A7A9AC;
+margin: 10px;
+padding: 10px;
+}

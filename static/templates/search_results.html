@@ -1,4 +1,4 @@
-<div cs-main-view has-permission="{{(!(Session.activeUser === undefined))}}">
+<!-- <div cs-main-view has-permission="{{(!(Session.activeUser === undefined))}}">
   <div class="row">
 
     <div class="col-sm-2 col-md-3">
@@ -21,42 +21,39 @@
 
       </div>
 
-    </div>
+    </div> -->
 
 
 
 
-    <div class="col-sm-10 col-md-9">
+<!--     <div class="col-sm-10 col-md-9">
       <div class="panel panel-default">
-
-
         <div class="page-header">
           <h2>{{title}}</h2>
         </div>
-
         <div class="row">
           <div class="panel-body">
             <div alert alert-info ng-show="infoMessage">{{infoMessage}}</div>
             <div alert alert-danger ng-show="errorMessage">{{errorMessage}}</div>
-
             <div ng-repeat="search in searches" class="search-result">
-
               <div class="col-md-3 ">
                 <image ng-src="{{search.searcher_user.picture_url}}" class="img-responsive img-circle" />
-<!--                 <div class="btn-group-vertical"> -->
-                  <button class="btn btn-primary message-btn btn-lg" ng-click="startConversation(search.searcher_user_id)">
+                  <button class="btn btn-primary search-btn btn-default btn-block" ng-click="startConversation(search.searcher_user_id)">
                     Message
                   </button>
-                  <button class="btn btn-default">
-                    <span class="glyphicon glyphicon-heart"></span> Add to Favorites
+                  <button class="btn fav-btn btn-xs">
+                    <span class="glyphicon glyphicon-heart fav-heart"></span> Add to Favorites
                   </button>
-<!--               </div> -->
               </div>
 
               <div class="col-md-9">
                 <a ng-href="#/user/{{search.searcher_user_id}}"><h4>{{search.searcher_user.name}}</h5></a>
                 <p class="show-linebreaks">{{search.searcher_user.bio}}</p>
-                <!--   <div ng-show="search.searcher_user.conversationsWithMe">
+                 -->
+
+
+<!-- =============================================================================================================                 -->
+<!--   <div ng-show="search.searcher_user.conversationsWithMe">
     <h5>Past Conversations</h5>
     <button ng-repeat="conversation in search.searcher_user.conversationsWithMe"
             class="btn btn-default btn-list"
@@ -65,15 +62,17 @@
       {{conversation.title}}
     </button>
   </div> -->
-                <h5>{{ {'partner': 'They offer', 'educator': 'Looking For'}[search.searcher_role] }}</h5>
-                <div ng-repeat="label in search.labels" ng-class="{true: 'labelbox-selected', false: 'labelbox'}[search.matchingLabels[label]]" class="labelbox">{{label}}</div>
+
+<!-- =============================================================================================================                 -->
+<!--                 <h5>{{ {'partner': 'They offer', 'educator': 'Looking For'}[search.searcher_role] }}</h5>
+                <div ng-repeat="label in search.labels" ng-class="{true: 'labelbox-selected', false: 'labelbox btn-xs'}[search.matchingLabels[label]]" class="labelbox">{{label}}</div>
               </div>
               <div class="clearfix"></div>
             </div>
           </div>
         </div>
-      </div
+      </div>
 
 
     </div>
-  </div>
+  </div> -->

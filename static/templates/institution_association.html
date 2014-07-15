@@ -1,0 +1,46 @@
+  <div class="form-group">
+
+    <label for="institution{{index}}"
+           class="control-label cs-form-label">Institution Name {{index}}</label>
+    <div class="cs-form-control">
+      <input ng-model="institutionAssociation.institution.name"
+             name="institution{{index}}"
+             id="institution{{index}}"
+             class="form-control"
+             typeahead="i.name for i in institutions | filter:$viewValue | limitTo: 100"
+             type="text"/>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="institution_type{{index}}"
+           class="control-label cs-form-label">Institution Type {{index}}</label>
+    <div class="cs-form-control">
+      <select ng-model="institutionAssociation.institution.institution_type"
+              name="institution_type{{index}}"
+              id="institution_type{{index}}"
+              class="form-control"
+              ng-options="typ for typ in institutionTypes | filter:$viewValue | limitTo: 100"
+              >
+      </select>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="role{{index}}"
+           class="control-label cs-form-label">Role {{index}}</label>
+    <div class="cs-form-control">
+      <input ng-model="institutionAssociation.role"
+             name="role{{index}}"
+             id="role{{index}}"
+             class="form-control"
+             type="text"/>
+    </div>
+  </div>
+
+  <a class="cs-form-button"
+     ng-if="institutionAssociation.remove"
+     ng-click="institutionAssociation.remove()">
+    Delete Institution
+  </a>
+

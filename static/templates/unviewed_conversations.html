@@ -1,0 +1,35 @@
+<h4>Conversations with Unviewed Messages</h4>
+
+<div ng-repeat="message in conversation.messages" class="conversation-block">
+  <div class="conversation-sender">{{message.sender_user.name}}</div>
+  <div class="conversation-message">{{message.content}}</div>
+</div>
+
+<div ng-show="conversations.length == 0">
+  There are no conversations with unviewed messages.
+</div>
+
+<table class="table" ng-show="conversations">
+  <thead>
+    <tr><th>Subject</th><th>Name</th><th>Number of Unviewed Message<th>Message</th></tr>
+  </thead>
+  <tbody>
+    <tr
+       class="clickable"
+       ng-repeat="conversation in conversations"
+       ng-click="viewConversation(conversation.id)">
+      <td>{{conversation.title}}</td>
+      <td>{{conversation.otherUser.name}}</td>
+      <td>{{conversation.getUnviewedMessages().length}}</td>
+      <td>{{conversation.getUnviewedMessages()[0].content | truncate:20}}</td>
+    </tr>
+  </tbody>
+</table>
+  
+<div class="alert alert-danger" ng-show="errorMessage">
+  {{errorMessage}}
+</div>
+
+<div class="alert alert-info" ng-show="infoMessage">
+  {{infoMessage}}
+</div>

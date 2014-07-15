@@ -1,0 +1,33 @@
+  <div class="form-group">
+    <label for="question{{question.id}}"
+           class="control-label">{{question.text}}</label>
+    <div class="">
+      <div ng-repeat="suggested_answer in question.suggested_answers">
+        <input type="radio" name="radioquestion{{question.id}}"
+               ng-model="question.answer.text"
+               ng-value="suggested_answer"/>
+        {{suggested_answer}}
+      </div>
+      <div ng-if="question.suggested_answers.length > 0">
+        <input type="radio" name="radioquestion{{question.id}}"
+               ng-model="question.answer.text"
+               ng-value="custom_answer"/>
+        Other (enter below)
+        <input ng-model="custom_answer"
+               name="custom_answer{{question.id}}"
+               id="custom_answer{{question.id}}"
+               class="form-control"
+               type="text"/>
+      </div>
+      <div ng-if="question.suggested_answers.length === 0">
+        <input ng-if="!question.long_answer"
+               type="text" ng-model="question.answer.text"
+               class="form-control"
+               />
+        <textarea ng-if="question.long_answer"
+                  ng-model="question.answer.text"
+                  class="form-control"
+                  ></textarea>
+      </div>
+    </div>
+  </div>

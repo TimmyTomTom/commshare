@@ -1,0 +1,51 @@
+<div cs-forbidden ng-if="!Session.activeUser.is_administrator">
+</div>
+
+<div ng-if="Session.activeUser.is_administrator">
+
+  <h4>Events</h4>
+
+  <div ng-if="start && stop">
+    Showing all events in the interval {{start | date: 'medium'}} to {{stop | date: 'medium'}}.
+  </div>  
+  <div ng-if="start && !stop">
+    Showing all events after {{start | date: 'medium'}}.
+  </div>  
+  <div ng-if="!start && stop">
+    Showing all events before {{stop | date: 'medium'}}.
+  </div>  
+
+  <div ng-show="infoMessage" class="alert alert-info">
+    {{infoMessage}}
+  </div>
+
+  <div ng-show="errorMessage" class="alert alert-danger">
+    {{errorMessage}}
+  </div>
+  
+  <div ng-show="(events !== undefined) && (events.length === 0)"
+       class="alert alert-warning"
+       >
+    No events in that time range.
+  </div>
+
+  <table class="table" ng-show="events">
+    <thead>
+      <tr><th>Date and Time</th><th>Educator</th><th>Educational Institution</th>
+        <th>Community Partner</th><th>Description</th></tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat = "evnt in events">
+        <td><a href="#/share/{{evnt.share.id}}">
+            {{evnt.datetime_start | date: 'medium'}}</a></td>
+        <td><a href="#/user/{{evnt.share.educator.id}}">
+            {{evnt.share.educator.name}}</a></td>
+        <td>{{evnt.share.educator.institution_associations[0].institution.name}}</td>
+        <td><a href="#/user/{{evnt.share.community_partner.id}}">
+            {{evnt.share.community_partner.name}}</a></td>
+        <td>{{evnt.description || evnt.share.description}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

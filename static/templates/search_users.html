@@ -1,0 +1,60 @@
+<div cs-forbidden ng-if="Session.activeUser === undefined">
+</div>
+
+<div ng-if="Session.activeUser !== undefined">
+
+  <h4>Search For Users</h4>
+
+  <form novalidate login-with-auto-fill
+        action="" role="form" name="form" class="form-horizontal">
+    
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="form-group">
+          <label for="searchText"
+                 class="control-label cs-form-label">Email or Name</label>
+          <div class="cs-form-control">
+            <input ng-model="searchText"
+                   name="searchText"
+                   id="searchText"
+                   class="form-control"
+                   type="text"/>
+          </div>
+        </div>
+        <button class="btn btn-default cs-form-button" ng-click="newSearch()">
+          Search
+        </button>
+      </div>
+    </div>
+    
+  </form>
+  
+  <div ng-show="infoMessage" class="alert alert-info">
+    {{infoMessage}}
+  </div>
+
+  <div ng-show="errorMessage" class="alert alert-danger">
+    {{errorMessage}}
+  </div>
+  
+  <div ng-show="(users !== undefined) && (users.length === 0)"
+       class="alert alert-warning"
+       >
+    No matching users found.
+  </div>
+
+  <table class="table" ng-show="users">
+    <thead>
+      <tr><th>Name</th><th>Email</th><th>Institution</th><th>Is Administrator</th></tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat = "user in users">
+        <td><a href="#/user/{{user.id}}">{{user.name}}</a></td>
+        <td>{{user.email}}</td>
+        <td>{{user.institution_associations[0].institution.name}}</td>
+        <td>{{user.is_administrator}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>

@@ -1,0 +1,65 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Start Conversation with {{user.name}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            ng-click="cancel()">
+      &times;</button>
+  </div>
+
+  <div class="modal-body">
+
+    <div class="alert alert-danger"
+         ng-show="!Session.activeUser.email_confirmed">
+      You cannot start a conversation until you have confirmed your email address.
+      <a ng-click="resendEmailConfirmation()">Resend email confirmation email</a>
+    </div>
+
+    <form novalidate login-with-auto-fill
+          action="" role="form" name="newConversationForm" class="form-horizontal">
+      
+      <div class="form-group">
+        <label for="title"
+               class="control-label">Subject</label>
+        <div class="">
+          <input ng-model="conversation.title"
+                 required
+                 name="title"
+                 id="title"
+                 class="form-control"
+                 type="text"/>
+          <p ng-show="newConversationForm.title.$invalid && !newConversationForm.title.$pristine" class="help-block">
+            A conversation subject is required.
+          </p>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="content"
+               class="control-label">Message</label>
+        <div class="">
+          <textarea ng-model="message.content"
+                    required
+                    name="content"
+                    id="content"
+                    class="form-control"
+                    type="text">
+          </textarea>
+          <p ng-show="newConversationForm.content.$invalid && !newConversationForm.content.$pristine"
+             class="help-block">
+            A message is required.
+          </p>
+        </div>
+      </div>
+
+      <div class="alert alert-danger" ng-show="errorMessage">
+        {{errorMessage}}
+      </div>
+      
+      <button class="btn btn-default" type="submit" ng-click="startConversation()"
+              ng-disabled="newConversationForm.$invalid">
+        Send Message
+      </button>
+
+    </form>
+  </div>
+</div>

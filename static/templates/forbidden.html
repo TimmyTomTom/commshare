@@ -1,0 +1,11 @@
+<div id="content-header">
+  <h1>Forbidden</h1>
+</div>
+<div id="content-container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h4 class="heading">You do not have permission to view this page</h4>
+      <p ng-show="!(Session.activeUser)">Try <a ng-href="/#/login?goto={{thisLocation}}">logging in</a></p>
+    </div>
+  </div>
+</div>

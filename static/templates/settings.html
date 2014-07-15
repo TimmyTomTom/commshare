@@ -1,0 +1,75 @@
+<div cs-forbidden ng-if="Session.activeUser === undefined">
+</div>
+
+<div ng-if="Session.activeUser !== undefined">
+
+  <h4>Settings</h4>
+
+  <div tabset name="settingsTabSet">
+
+    <div tab active="interestsTabActive" 
+         ng-if="Session.activeUser.is_community_partner">
+      <div tab-heading>
+        <span ng-class="">
+          Interests
+        </span>
+      </div>
+      <div class="tab-content" active="interestsTabActive">
+        <div cs-community-partner-labels search="search"></div>
+      </div>
+    </div>
+
+    <div tab active="personalTabActive">
+      <div tab-heading>
+        <span ng-class="{'tab-heading-error': personalSettingsForm.$invalid}">
+          Personal
+        </span>
+      </div>
+      <div class="tab-content">
+        <form novalidate action="" role="form" name="personalSettingsForm"
+              class="form-horizontal" emit-scope="personalSettingsForm">
+          <div cs-account-settings></div>
+          <div cs-personal-settings></div>
+          <div cs-more-personal-settings>boo</div>
+        </form>
+      </div>
+
+    </div>
+
+    <div tab active="experienceTabActive">
+      <div tab-heading>
+        <span ng-class="{'tab-heading-error': experienceSettingsForm.$invalid}">
+          Experience
+        </span>
+      </div>
+      <div class="tab-content">
+        <form novalidate action="" role="form" name="experienceSettingsForm">
+          <div ng-repeat="question in questions" cs-question question="question"
+               ng-if="((question.question_type == 'signup_community_partner') && Session.activeUser.is_community_partner) || ((question.question_type == 'signup_educator') && Session.activeUser.is_educator)"
+               answers="answers"></div>
+        </form>
+      </div>
+    </div>
+
+  </div>
+  
+  <div ng-show="personalSettingsForm.$invalid">
+    Personal Settings are invalid
+  </div>
+  <div ng-show="accountSettingsForm.$invalid">
+    Account Settings are invalid
+  </div>
+  
+  <input type="submit" value="Save" class="btn btn-primary"
+         ng-disabled="personalSettingsForm.$invalid || accountSettingsForm.$invalid"
+         ng-click="save()"/>
+
+
+  <br/>
+  <br/>
+  <h4> Account Deletion </h4>
+  
+  <input type="submit" value="Delete Account" class="btn btn-default"
+         ng-click="deleteAccount()"/>
+
+</div>

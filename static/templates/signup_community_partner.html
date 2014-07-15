@@ -1,0 +1,95 @@
+<h4>Community Partner SignUp</h4>
+
+<div tabset>
+  <div tab>
+    <div tab-heading>
+      <span ng-class="">
+        Interests
+      </span>
+    </div>
+    <div class="tab-content" active="interestsTabActive">
+      <div cs-community-partner-labels search="newSearch"></div>
+      <input type="submit" value="Continue" class="btn btn-default"
+             ng-disabled="newSearch.nActiveLabels === 0"
+             ng-click="experienceTabActive=true; interestsTabCompleted=true;"/>
+    </div>
+  </div>
+  <div tab active="experienceTabActive"
+       disabled="!interestsTabCompleted">
+    <div tab-heading>
+      <span ng-class="{'tab-heading-error': experienceSettingsForm.$invalid}">
+        Experience
+      </span>
+    </div>
+    <div class="tab-content">
+      <form novalidate action="" role="form" name="experienceSettingsForm">
+        <div ng-repeat="question in questions" cs-question question="question"
+             ng-if="(question.question_type=='signup' || question.question_type=='signup_community_partner')"
+             answers="answers"></div>
+      </form>
+      <input type="submit" value="Continue" class="btn btn-default"
+             ng-click="personalTabActive=true; experienceTabCompleted=true;"/>
+    </div>
+  </div>
+  <div tab active="personalTabActive"
+       disabled="!experienceTabCompleted"
+       >
+    <div tab-heading>
+      <span ng-class="{'tab-heading-error': personalSettingsForm.$invalid && !personalSettingsForm.$pristine}">
+        Personal
+      </span>
+    </div>
+    <div class="tab-content">
+      <form novalidate action="" role="form" name="personalSettingsForm"
+            class="form-horizontal">
+        <div cs-personal-settings></div>
+      </form>
+      <input type="submit" value="Continue" class="btn btn-default"
+             ng-disabled="personalSettingsForm.$invalid"
+             ng-click="accountTabActive=true; personalTabCompleted=true;"/>
+    </div>
+  </div>
+  <div tab active="accountTabActive" disabled="!personalTabCompleted">
+    <div tab-heading>
+      <span ng-class="{'tab-heading-error': (accountSettingsForm.$invalid && !accountSettingsForm.$pristine)}">
+        Account
+      </span>
+    </div>
+    <div class="tab-content">
+      <form novalidate action="" role="form" name="accountSettingsForm"
+            class="form-horizontal">
+        <div cs-signup-account-settings></div>
+      </form>
+
+      <div ng-show="personalSettingsForm.$invalid" class="help-block">
+        Personal Settings are incomplete.
+      </div>
+
+      <input type="submit" value="Continue" class="btn btn-default"
+             ng-disabled="personalSettingsForm.$invalid || accountSettingsForm.$invalid"
+             ng-click="agreementTabActive=true; accountTabCompleted=true"/>
+    </div>
+  </div>
+
+  <div tab active="agreementTabActive" disabled="!accountTabCompleted">
+    <div tab-heading>
+      <span ng-class="{'tab-heading-error': (accountTabCompleted && !agreed)}">
+        User Agreement
+      </span>
+    </div>
+    <div class="tab-content">
+      
+      <div cs-user-agreement></div>
+        
+      <p>
+        I agree 
+        <input type=checkbox ng-model="agreed"/><br/>
+      </p>
+      
+      <input type="submit" value="Sign Up!" class="btn btn-default"
+             ng-disabled="personalSettingsForm.$invalid || accountSettingsForm.$invalid || (!agreed)"
+             ng-click="submit();"/>
+    </div>
+  </div>
+  
+</div>

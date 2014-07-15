@@ -1,0 +1,83 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">Which grade levels are you interested in working with?</h4>
+  </div>
+  <div class="row panel-body">
+    <div ng-repeat="label in search.displayLabelsAll.gradeLevels" ng-click="toggleLabel(label)"
+         ng-class="{true: 'labelbox-selected', false: ''}[search.activeLabels[label]]"
+         class="clickable labelbox">
+      {{label}}
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">In which general areas do you have expertise?</h4>
+  </div>
+  <div class="panel-body row">
+    <div ng-click="toggleLabel('STEM')"
+         ng-class="{true: 'labelbox-selected', false: ''}[search.activeLabels['STEM']]"
+         class="clickable labelbox">
+      <h5>STEM</h5>
+    </div>
+    <div ng-repeat="label in search.displayLabelsAll.subjectAreas.STEM" ng-click="toggleLabel(label)"
+         ng-class="{true: 'labelbox-selected', false: ''}[search.activeLabels[label]]"
+         class="clickable labelbox">
+      {{label}}
+    </div>
+  </div>
+  <div class="panel-body row">
+    <div ng-click="toggleLabel('Arts')"
+         ng-class="{true: 'labelbox-selected', false: ''}[search.activeLabels['Arts']]"
+         class="clickable labelbox">
+      <h5>Arts</h5>
+    </div>
+    <div ng-repeat="label in search.displayLabelsAll.subjectAreas.Arts" ng-click="toggleLabel(label)"
+         ng-class="{true: 'labelbox-selected', false: ''}[search.activeLabels[label]]"
+         class="clickable labelbox">
+      {{label}}
+    </div>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">In which specific areas do you have expertise?</h4>
+  </div>
+  <div class="panel-body row" ng-show="search.displayLabelsAll.subjectAreas.Custom.length">
+    <div ng-repeat="label in search.displayLabelsAll.subjectAreas.Custom" ng-click="toggleLabel(label)"
+         ng-class="{true: 'labelbox-selected', false: ''}[search.activeLabels[label]]"
+         class="clickable labelbox">
+      {{label}}
+    </div>
+  </div>
+  <div class="panel-body row">
+    <div class="alert alert-warning">
+      To help our matching algorithm please enter as many terms as possible.<br/>
+      You may type any term in and are not restricted to the drop-down suggestions.
+    </div>
+    <div class="col-lg-3">
+      <input class="form-control" type="text"
+             cs-new-label methods="newLabelMethods" ng-model="newLabel.name"
+             typeahead="label for label in allLabels | filter:$viewValue | limitTo:8"
+             typeahead-on-select="typeaheadSelect()"
+             />
+    </div>
+    <button class="btn btn-default" ng-click="newLabelMethods.onUpdate()">
+      Add</button>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h4 class="panel-title">What roles would you be interested in?</h4>
+  </div>
+  <div class="row panel-body">
+    <div ng-repeat="label in search.displayLabelsAll.engagementLevels" ng-click="toggleLabel(label)"
+         ng-class="{true: 'labelbox-selected', false: ''}[search.activeLabels[label]]"
+         class="clickable labelbox">
+      {{label}}
+    </div>
+  </div>
+</div>

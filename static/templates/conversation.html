@@ -1,0 +1,196 @@
+<div cs-forbidden ng-if="(conversation === undefined) || (Session.activeUser === undefined)">
+</div>
+
+<!-- Sidebar Template -->
+
+
+
+<div class="row">
+
+  <div class="col-sm-2 col-md-3">
+
+
+    <div id="side-bar">
+      <img src="http://lorempixel.com/200/200/people/" class="img-responsive img-circle centered">
+      <ul class="nav" id="side-nav-items">
+        <li><a ng-href="/#/search/{{search.id}}/results">Matches</a>
+        </li>
+        <li><a href="#">Search</a>
+        </li>
+        <li><a href="#">Messages</a>
+        </li>
+        <li><a href="#">Shares</a>
+        </li>
+
+      </ul>
+
+
+    </div>
+
+  </div>
+
+
+
+
+
+
+
+
+
+  <!-- Conversation Code  -->
+
+  <div class="col-sm-10 col-md-9">
+
+    <div ng-if="(conversation !== undefined) && (Session.activeUser !== undefined)">
+
+      <!-- Conversation Area -->
+
+      <div class="panel panel-default">
+        <div class="page-header">
+          <h2>Message:  {{conversation.otherUser.name}} </h2>
+        </div>
+        <div class="panel-body">
+
+<!--           <div ng-show="conversation.messages.length >=2" class="alert alert-warning">
+            Don't forget to Create a Share.
+          </div> -->
+
+
+          <div id="chat-body">
+            <div ng-repeat="message in conversation.messages" class="conversation-block">
+
+              <div class="chat-unit">
+                <div class="row">
+                  <div class="col-lg-2">
+                    <div class="message-profile-img">
+                      <img src="http://lorempixel.com/75/75/people/" class=" img-circle">
+                    </div>
+                  </div>
+                  <div class="col-lg-10">
+                    <!--                 <div class="conversation-sender"> -->
+                    <h4>{{message.sender_user.name}}</h4>
+                    <!--                 </div> -->
+                    <div class="conversation-message show-linebreaks" ng-class="message.sender_user_id">{{message.content}}</div>
+                  </div>
+                </div>
+              </div>
+
+          </div>
+          </div>
+
+          <form novalidate login-with-auto-fill action="" role="form" name="newConversationForm" class="form-horizontal" ng-if="conversation.otherUser">
+
+            <div class="form-group">
+              <label for="content" class="control-label">Send a new message</label>
+              <div class="">
+                <textarea ng-model="newMessage.content" required name="content" id="content" class="form-control" ng-class="Session.activeUser.id" type="text">
+                </textarea>
+                <p ng-show="newConversationForm.content.$invalid && !newConversationForm.content.$pristine" class="help-block">
+                  A message is required.
+                </p>
+              </div>
+            </div>
+
+            <div class="alert alert-danger" ng-show="errorMessage">
+              {{errorMessage}}
+            </div>
+
+            <button class="btn btn-default" type="submit" ng-click="sendMessage()" ng-disabled="newConversationForm.$invalid">
+              Send Message
+            </button>
+
+          </form>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- End of Conversation Area -->
+
+
+
+
+
+
+
+
+    <!-- Organizing a Share -->
+
+    <h4 ng-if="conversation.otherUser">Organizing a Share with {{conversation.otherUser.name}}</h4>
+    <h4 ng-if="!conversation.otherUser">Share between {{conversation.userA.name}} and {{conversation.userB.name}}</h4>
+
+    <div ng-show="!otherUser.active">
+      {{otherUser.name}} has deleted their account.
+    </div>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5 class="panel-title">Share Scheduling</h5>
+        This is where you set the date, time and location of the share.
+      </div>
+      <div class="panel-body">
+        <div ng-show="share.id === undefined">
+          No Share arranged yet.
+        </div>
+        <table class="table" ng-show="share.id >= 0">
+          <tbody>
+            <tr>
+              <th>Title of Share</th>
+              <td>{{share.title}}</td>
+            </tr>
+            <tr>
+              <th>Description of Share</th>
+              <td>{{share.description}}</td>
+            </tr>
+          </tbody>
+          <tbody ng-repeat="evnt in share.events" ng-show="evnt.active">
+            <tr>
+              <th>Location</th>
+              <td ng-show="evnt.location">{{evnt.location}}</td>
+              <td ng-show="!evnt.location">No location chosen</td>
+            </tr>
+            <tr>
+              <th>Starting</th>
+              <td ng-show="evnt.datetime_start">{{evnt.datetime_start | date : 'EEEE d MMMM yyyy, h:mm a'}}</td>
+              <td ng-show="!evnt.datetime_start">No starting time chosen</td>
+              <td ng-show="conversation.otherUser" ng-show="now > evnt.datetime_start">
+                <a ng-click="reviewEvent(evnt)" class="clickable">
+                Review Event
+              </a>
+              </td>
+            </tr>
+            <tr>
+              <th>Stopping</th>
+              <td ng-show="evnt.datetime_stop">{{evnt.datetime_stop | date : 'EEEE d MMMM yyyy, h:mm a'}}</td>
+              <td ng-show="!evnt.datetime_stop">No stopping time chosen</td>
+            </tr>
+          </tbody>
+        </table>
+        <div ng-if="conversation.otherUser">
+          <button class="btn btn-default" type="submit" ng-click="editShare()" ng-show="share.id !== undefined">
+            Edit Share Details
+          </button>
+          <button class="btn btn-default" type="submit" ng-click="editShare()" ng-show="share.id === undefined">
+            Create Share Details
+          </button>
+          <button class="btn btn-default" type="submit" ng-click="confirmShare()" ng-show="share.canApprove">
+            Confirm Share Details
+          </button>
+          <button class="btn btn-default" disabled type="submit" ng-show="(!share.approved) && (!share.canApprove) && (share.id >= 0)">
+            Waiting for Confirmation from {{otherUser.name}}
+          </button>
+          <button class="btn btn-default" disabled type="submit" ng-show="share.approved">
+            Confirmed
+          </button>
+          <button class="btn btn-default" type="submit" ng-click="cancelShare()" ng-disabled="!share.hasActiveEvent()">
+            Cancel Share
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--   End of Share Details -->
+
+  </div>
+
+</div>

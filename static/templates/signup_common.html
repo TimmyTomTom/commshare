@@ -1,0 +1,84 @@
+<div class="form-group">
+  <label for="name"
+         class="control-label cs-form-label">Name</label>
+  <div class="cs-form-control">
+    <input ng-model="newUser.name"
+           required
+           type="text"
+           name="name"
+           id="name"
+           class="form-control"/>
+    <p ng-show="signUpForm.name.$invalid && !signUpForm.name.$pristine" class="help-block">
+      A name is required.
+    </p>
+  </div>
+</div>
+<div class="form-group">
+  <label for="email"
+         class="control-label cs-form-label">Email</label>
+  <div class="cs-form-control">
+    <input ng-model="newUser.email"
+           required
+           name="email"
+           id="email"
+           class="form-control"
+           type="email"/>
+    <p ng-show="signUpForm.email.$invalid && !signUpForm.email.$pristine" class="help-block">
+      Please enter a valid email.
+    </p>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="password"
+         class="control-label cs-form-label">Password</label>
+  <div class="cs-form-control">
+    <input ng-model="newUser.password"
+           required
+           name="password"
+           id="password"
+           class="form-control"
+           cs-parser-hook="passwordConnection"
+           ng-minlength="8"
+           methods="passwordMethods"
+           type="password"/>
+    <p ng-show="signUpForm.password.$error.required && !signUpForm.password.$pristine"
+       class="help-block">
+      A password is required.
+    </p>
+    <p ng-show="signUpForm.password.$error.minlength && !signUpForm.password.$pristine"
+       class="help-block">
+      Password is less than 8 characters.
+    </p>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="repeat_password"
+         class="control-label cs-form-label">Repeat Password</label>
+  <div class="cs-form-control">
+    <input ng-model="repeat_password"
+           name="repeat_password"
+           id="repeat_password"
+           class="form-control"
+           cs-match="passwordConnection"
+           methods="passwordMethods"
+           type="password"/>
+    <p ng-show="signUpForm.repeat_password.$error.match && !signUpForm.repeat_password.$pristine" class="help-block">
+      Passwords do not match.
+    </p>
+  </div>
+</div>
+
+<div cs-institutions user="newUser">
+</div>
+
+<div class="form-group">
+  <label for="bio"
+         class="control-label cs-form-label">Bio</label>
+  <div class="cs-form-control">
+    <textarea ng-model="editedUser.bio"
+              name="bio"
+              class="form-control"></textarea>
+  </div>
+</div>

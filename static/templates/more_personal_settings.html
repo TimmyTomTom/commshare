@@ -1,0 +1,98 @@
+<div class="form-group">
+  <label for="year_of_birth"
+         class="control-label cs-form-label">Year of Birth</label>
+  <div class="cs-form-control">
+    <input ng-model="editedUser.year_of_birth"
+           name="year_of_birth"
+           id="year_of_birth"
+           class="form-control"
+           type="integer"/>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="gender"
+         class="control-label cs-form-label">Gender</label>
+  <div class="cs-form-control">
+    <input type="radio" name="gender"
+           ng-model="editedUser.gender"
+           value="Female"/>
+    Female<br/>
+    <input type="radio" name="gender"
+           ng-model="editedUser.gender"
+           value="Male"/>
+    Male<br/>
+    <input type="radio" name="gender"
+           ng-model="editedUser.gender"
+           ng-value="custom_gender"/>
+    Other (enter below)<br/>
+    <input ng-model="custom_gender"
+           name="custom_gender"
+           class="form-control"
+           type="text"/>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="ethnicity"
+         class="control-label cs-form-label">Ethnicity</label>
+  <div class="cs-form-control">
+    <input type="radio" name="ethnicity"
+           ng-model="editedUser.ethnicity"
+           value="Hispanic or Latino"/>
+    Hispanic or Latino<br/>
+    <input type="radio" name="ethnicity"
+           ng-model="editedUser.ethnicity"
+           value="Not Hispanic or Latino"/>
+    Not Hispanic or Latino<br/>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="website"
+         class="control-label cs-form-label">Website</label>
+  <div class="cs-form-control">
+    <input ng-model="editedUser.website"
+           name="website"
+           id="website"
+           class="form-control"
+           type="text"/>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="phone_number"
+         class="control-label cs-form-label">Phone Number</label>
+  <div class="cs-form-control">
+    <input ng-model="editedUser.phone_number"
+           name="phone_number"
+           id="phone_number"
+           class="form-control"
+           type="text"/>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="twitter_handle"
+         class="control-label cs-form-label">Twitter Handle</label>
+  <div class="cs-form-control">
+    <input ng-model="editedUser.twitter_handle"
+           name="twitter_handle"
+           id="twitter_handle"
+           class="form-control"
+           type="text"/>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="linkedin_link"
+         class="control-label cs-form-label">LinkedIn Profile URL</label>
+  <div class="cs-form-control">
+    <input ng-model="editedUser.linkedin_link"
+           name="linkedin_link"
+           id="linkedin_link"
+           class="form-control"
+           type="text"/>
+  </div>
+</div>
+

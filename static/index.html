@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if IE 8]>         <html class="no-js lt-ie10 lt-ie9" ng-app="communityshare" id="ng-app"> <![endif]-->
+<!--[if IE 9]>         <html class="no-js lt-ie10" ng-app="communityshare" id="ng-app"> <![endif]-->
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" ng-app="communityshare" id="ng-app">
+  <head>
+    <title>Community Share</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="">
+    <meta name="author" content="" />
+
+    <link rel="stylesheet"
+          href="/static/css/styles.css?q={{COMMIT_HASH}}"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"
+          type="text/css" />
+
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+  </head>
+
+  <body>
+
+
+
+      <!-- Static navbar -->
+      <div class="navbar navbar-default" role="navigation" ng-controller="NavigationController">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse"
+                    data-target=".navbar-collapse"
+                    ng-init="navCollapsed=true"
+                    ng-click="navCollapsed=!navCollapsed"
+                    >
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <div ng-switch on="Session.activeUser !== undefined">
+              <a class="navbar-brand" href="#/" ng-switch-when="false">
+                Community Share
+              </a>
+              <a class="navbar-brand" href="#/home" ng-switch-when="true">
+                Community Share
+              </a>
+            </div>
+          </div>
+          <div class="navbar-collapse collapse" collapse="navCollapsed">
+            <ul class="nav navbar-nav navbar-right">
+              <li ng-show="Session.activeUser">
+                <a href="#/home">
+                  <i class="fa fa-home fa-lg"></i>
+                </a>
+              </li>
+              <li ng-show="Session.activeUser">
+                <a href="#/conversation/unviewed">
+                  {{ "{{" }}Session.activeUser.nUnviewedMessages{{ "}}" }} New Messages
+                </a>
+              </li>
+              <li ng-show="Session.activeUser">
+                <a href="#/user/{{ "{{" }}Session.activeUser.id{{ "}}" }}">
+                  {{ "{{" }}Session.activeUser.name{{ "}}" }}
+                </a>
+              </li>
+              <li class="dropdown" ng-show="Session.activeUser">
+                <a class="dropdown-toggle"><i class="fa fa-cog fa-lg"></i></a>
+                <ul class="dropdown-menu">
+                  <li><a href="#/settings">Settings</a></li>
+                  <li><a href="#/logout">Logout</a></li>
+                </ul>
+              </li>
+              <li><a href="#login" ng-show="!Session.activeUser">Login</a></li>
+
+            </ul>
+
+          </div><!--/.nav-collapse -->
+        </div><!--/.container-fluid -->
+      </div>
+
+      <div class="container">
+
+      <div class="message-container" ng-controller="MessageController">
+        <div alert ng-repeat="alert in messages.messages"
+             class="animated-alert"
+             type="{{ "{{" }} alert.type {{ "}}" }}"
+             close="messages.removeMessage(alert)">
+          {{ "{{" }}alert.text{{ "}}" }}</div>
+      </div>
+
+      <!-- Main component for a primary marketing message or call to action -->
+      <div class="ng-view container-fluid">
+      </div>
+
+    </div> <!-- /container -->
+
+    <div class="footer">
+      <div class="navbar navbar-default">
+        <div class="text-muted text-right">
+          To report abuse/inappropriate content contact
+          <a href="mailto:{{config.ABUSE_EMAIL_ADDRESS}}">{{config.ABUSE_EMAIL_ADDRESS}}</a><br/>
+          To report a bug in the website contact
+          <a href="mailto:{{config.BUG_EMAIL_ADDRESS}}">{{config.BUG_EMAIL_ADDRESS}}</a>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-animate.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-route.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-resource.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.0-beta.8/angular-cookies.min.js"></script>
+    <script src="./static/js/main.js?q={{COMMIT_HASH}}"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.11.0/ui-bootstrap-tpls.min.js"></script>
+    <script src="./static/js/lib/angular-file-upload.js"></script>
+    <!--<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>-->
+
+    <script src="./static/js/controllers/authentication_controllers.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/controllers/home_controllers.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/controllers/user_controllers.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/controllers/search_controllers.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/controllers/message_controllers.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/controllers/conversation_controllers.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/controllers/share_controllers.js?q={{COMMIT_HASH}}"></script>
+
+    <script src="./static/js/services/authentication_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/item_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/user_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/search_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/map_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/message_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/modal_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/conversation_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/utility_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/share_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/survey_services.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/services/statistic_services.js?q={{COMMIT_HASH}}"></script>
+
+    <script src="./static/js/directives/mainview_directives.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/directives/home_directives.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/directives/user_directives.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/directives/label_directives.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/directives/institution_directives.js?q={{COMMIT_HASH}}"></script>
+    <script src="./static/js/directives/survey_directives.js?q={{COMMIT_HASH}}"></script>
+
+  </body>
+
+</html>

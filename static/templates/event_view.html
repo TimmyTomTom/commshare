@@ -1,0 +1,30 @@
+<div cs-forbidden ng-if="Session.activeUser === undefined">
+</div>
+
+<div ng-if="Session.activeUser !== undefined">
+
+  <h4>Event Review</h4>
+
+  <table>
+    <tr><th>Title</th><td>{{evnt.title || evnt.share.title}}</td></tr>
+    <tr><th>Description</th><td>{{evnt.description || evnt.share.description}}</td></tr>
+    <tr><th>Educator</th><td>{{evnt.share.educator.name}}</td></tr>
+    <tr><th>Community Partner</th><td>{{evnt.share.community_partner.name}}</td></tr>
+    <tr><th>Starting Time</th>
+      <td>{{evnt.datetime_start | date : 'EEEE d MMMM yyyy, h:mm a'}}</td></tr>
+    <tr><th>Stopping Time</th>
+      <td>{{evnt.datetime_stop | date : 'EEEE d MMMM yyyy, h:mm a'}}</td></tr>
+  </table>
+  
+  <form novalidate action="" role="form" name="eventReviewForm"
+        class="form-horizontal">
+
+    <div ng-repeat="question in questions" cs-question question="question"
+         answers="answers"></div>
+
+    <input ng-show="questions.length > 0" type="submit" value="Submit Feedback" class="btn btn-default"
+           ng-disabled="eventReviewForm.$invalid"
+           ng-click="save()"/>
+  </form>
+  
+</div>

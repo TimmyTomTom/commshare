@@ -1,0 +1,17 @@
+<div>
+
+    <h4>Email Confirmation</h4>
+
+    <div class="alert alert-info" ng-show="(!errorMessage) && (!confirmed)">
+      Confirming email address.
+    </div>
+
+    <div class="alert alert-danger" ng-show="errorMessage">
+      {{errorMessage}}
+    </div>
+    
+    <div class="alert alert-success" ng-show="confirmed">
+      Your email address is confirmed.
+    </div>
+
+</div>

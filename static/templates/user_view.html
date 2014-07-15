@@ -1,0 +1,137 @@
+<div cs-forbidden ng-if="Session.activeUser === undefined">
+</div>
+
+<div ng-if="Session.activeUser !== undefined">
+  
+  <div ng-show="message" class="alert alert-info">{{message}}</div>
+  
+  <div ng-show="user">
+    
+    <h4>{{user.name}}</h4>
+
+    <p class="show-linebreaks">{{user.bio}}</p>
+    
+    <image ng-if="user.picture_url" ng-src="{{user.picture_url}}" class="profile-image"
+           height="200"/>
+
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h5 class="panel-title">Info</h5>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <tr><th>Zipcode</th><td>{{user.zipcode}}</td></tr>
+          <tr><th>Website</th><td>{{user.website}}</td></tr>
+          <tr><th>Twitter</th><td>{{user.twitter_handle}}</td></tr>
+          <tr><th>LinkedIn</th><td>{{user.linkedin_link}}</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="panel panel-default" ng-show="user.institution_associations">
+      <div class="panel-heading">
+        <h5 class="panel-title">Institutions</h5>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr><th>Institution Name</th><th>Role</th></tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="assoc in user.institution_associations">
+              <td>{{assoc.institution.name}}</td>
+              <td>{{assoc.role}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="panel panel-default" ng-show="Session.activeUser.is_administrator">
+      <div class="panel-heading">
+        <h5 class="panel-title">Private Info</h5>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <tr><th>Email</th><td>{{user.email}}</td></tr>
+          <tr><th>Year of Birth</th><td>{{user.year_of_birth}}</td></tr>
+          <tr><th>Gender</th><td>{{user.gender}}</td></tr>
+          <tr><th>Ethnicity</th><td>{{user.ethnicity}}</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div ng-show="user.is_community_partner" cs-community-partner-view
+         user="user"
+         methods="communityPartnerViewMethods">
+    </div>
+
+    <div ng-show="user.is_educator" cs-educator-view
+         user="user"
+         methods="educatorViewMethods">
+    </div>
+
+
+    <div class="panel panel-default" ng-show="questions">
+      <div class="panel-heading">
+        <h5 class="panel-title">Experience</h5>
+      </div>
+      <div class="panel-body">
+        <div ng-repeat="question in questions">
+          <strong>{{question.text}}</strong><br/>
+          {{question.answer.text}}<br/>
+        </div>
+      </div>
+    </div>
+
+    <div class="panel panel-default" ng-show="conversations">
+      <div class="panel-heading">
+        <h5 class="panel-title">Conversations</h5>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <th>Title</th><th>Initiator</th><th>Receiver</th><th>Date of last message</th>
+          </thead>
+          <tbody>
+            <tr ng-repeat="conversation in conversations">
+              <td><a href="/#/conversation/{{conversation.id}}">
+                  {{conversation.title}}</a></td>
+              <td><a href="/#/user/{{conversation.userA.id}}">
+                  {{conversation.userA.name}}</a></td>
+              <td><a href="/#/user/{{conversation.userB.id}}">
+                  {{conversation.userB.name}}</a></td>
+              <td>{{conversation.datetime_last_message | date: 'mediumDate'}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    
+    <div class="panel panel-default" ng-show="events">
+      <div class="panel-heading">
+        <h5 class="panel-title">Events</h5>
+      </div>
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+            <tr><th>Date and Time</th><th>Educator</th><th>Educational Institution</th>
+              <th>Community Partner</th><th>Description</th></tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat = "evnt in events">
+              <td><a href="#/share/{{evnt.share.id}}">
+                  {{evnt.datetime_start | date: 'medium'}}</a></td>
+              <td><a href="#/user/{{evnt.share.educator.id}}">
+                  {{evnt.share.educator.name}}</a></td>
+              <td>{{evnt.share.educator.institution_associations[0].institution.name}}</td>
+              <td><a href="#/user/{{evnt.share.community_partner.id}}">
+                  {{evnt.share.community_partner.name}}</a></td>
+              <td>{{evnt.description || evnt.share.description}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

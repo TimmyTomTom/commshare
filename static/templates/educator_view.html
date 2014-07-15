@@ -1,0 +1,18 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5 class="panel-title">I'm an Educator</h5>
+  </div>
+  <div class="panel-body">
+    
+    <p>I'm looking to work which a community partner</p>
+    
+    <p>I'm currently searching for {{searches.length}} partners matching:</p>
+    <div class="row search-summary" ng-repeat="search in searches">
+      <div ng-repeat="label in search.labels" class="labelbox">
+        {{label}}
+      </div>
+    </div>
+    
+  </div>
+
+</div>

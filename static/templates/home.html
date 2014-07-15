@@ -1,0 +1,72 @@
+<div cs-forbidden ng-if="Session.activeUser === undefined">
+</div>
+
+<div ng-if="Session.activeUser !== undefined">
+  <h4>Home</h4>
+
+  <div class="alert alert-danger" ng-show="errorMessage">{{errorMessage}}</div>
+
+  <div ng-show="Session.activeUser.is_educator" cs-educator-home>
+  </div>
+  
+  <div ng-show="Session.activeUser.is_community_partner" cs-community-partner-home>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title">Upcoming Shares</h5>
+    </div>
+    <div class="panel-body">
+      <table class="table" ng-show="upcomingShares && upcomingShares.length>0">
+        <thead><tr><th>Date</th><th>Title</th><th>With</th></tr></thead>
+        <tbody>
+          <tr ng-repeat = "evnt in upcomingShares | orderBy:'datetime_start':false">
+            <td><a href="/#/conversation/{{evnt.share.conversation_id}}">
+                {{evnt.datetime_start | date : 'EEEE MMMM d yyyy'}}
+            </a></td>
+            <td><a href="/#/conversation/{{evnt.share.conversation_id}}">
+                {{evnt.share.title}}
+            </a></td>
+            <td><a href="/#/user/{{evnt.share.otherUser.id}}">
+                {{evnt.share.otherUser.name}}
+            </a></td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-show="(!upcomingShares) || upcomingShares.length===0">
+        No upcoming Shares
+      </div>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h5 class="panel-title">Recent Conversations</h5>
+    </div>
+    <div class="panel-body">
+      <table class="table" ng-show="recentConversations && recentConversations.length>0">
+        <thead><tr><th>Date</th><th>Title</th><th>With</th></tr></thead>
+        <tbody>
+          <tr ng-repeat = "conversation in recentConversations | orderBy:'datetime_last_message':true">
+            <td><a href="/#/conversation/{{conversation.id}}">
+                {{conversation.datetime_last_message | date : 'EEEE MMMM d yyyy'}}
+            </a></td>
+            <td><a href="/#/conversation/{{conversation.id}}">
+                {{conversation.title}}
+            </a></td>
+            <td><a href="/#/user/{{conversation.otherUser.id}}">
+                {{conversation.otherUser.name}}
+            </a></td>
+          </tr>
+        </tbody>
+      </table>
+      <div ng-show="(!recentConversations) || recentConversations.length===0">
+        No recent conversations
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="Session.activeUser.is_administrator" cs-administrator-home>
+  </div>
+  
+</div>

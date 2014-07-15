@@ -1,0 +1,18 @@
+<table>
+  <thead>
+    <tr>
+      <th>Search Created</th>
+      <th>Search Labels</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr ng-repeat="search in searches">
+      <td>{{search.created}}<td>
+      <td>
+        <div ng-repeat="label in search.labels">
+          {{label}}
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>

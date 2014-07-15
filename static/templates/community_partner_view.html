@@ -1,0 +1,24 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5 class="panel-title">I'm a Community Partner</h5>
+  </div>
+  <div class="panel-body">
+    
+    <p>The grade levels I am interested in working with are:</p>
+    <p>
+      <div ng-repeat="label in search.displayLabelsActive.gradeLevels" class="labelbox">{{label}}</div>
+      <div class="clearfix"></div>
+    </p>
+    <p>The subjects I am interested in working with are:</p>
+    <p>
+      <div ng-repeat="label in search.displayLabelsActive.subjectAreas" class="labelbox">{{label}}</div>
+      <div class="clearfix"></div>
+    </p>
+    <p>The roles I am interested in performing are:</p>
+    <p>
+      <div ng-repeat="label in search.displayLabelsActive.engagementLevels" class="labelbox">{{label}}</div>
+      <div class="clearfix"></div>
+    </p>
+    
+  </div>
+</div>

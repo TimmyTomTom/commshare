@@ -1,0 +1,116 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h4 class="modal-title">Share Details</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            ng-click="cancel()">
+      &times;</button>
+  </div>
+  <div class="modal-body">
+    <form novalidate login-with-auto-fill
+          action="" role="form" name="shareForm" class="form-horizontal">
+
+      <div class="form-group">
+        <label for="description"
+               class="control-label ">Description</label>
+        <div class="">
+          <textarea ng-model="share.description"
+                    required
+                    type="text"
+                    name="description"
+                    id="description"
+                    class="form-control"></textarea>
+          <p ng-show="shareForm.description.$invalid && !shareForm.description.$pristine" class="help-block">
+            Enter a description.
+          </p>
+        </div>
+      </div>
+
+      <div ng-repeat="event in events" ng-show="event.active">
+        <div class="form-group">
+          <label for="location"
+                 class="control-label ">Location</label>
+          <div class="">
+            <textarea ng-model="event.location"
+                      required
+                      type="text"
+                      name="location"
+                      id="location"
+                      class="form-control"></textarea>
+            <p ng-show="shareForm.location.$invalid && !shareForm.location.$pristine" class="help-block">
+              Enter a Location.
+            </p>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label for="location"
+                 class="control-label ">Date</label>
+          <div>
+            <div cs-datepicker ng-model="event.date">
+            </div>
+            <p ng-show="shareForm.date.$invalid && !shareForm.date.$pristine" class="help-block">
+              Enter a valid date.
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="time_start"
+                 class="control-label ">Starting Time</label>
+          <div class="">
+            <div timepicker
+                 ng-model="event.time_start"
+                 ng-change="changed()"
+                 hour-step="1"
+                 name="time_start"
+                 required
+                 minute-step="5"
+                 show-meridian="true">
+            </div>
+            <p ng-show="shareForm.time_start.$invalid && !shareForm.time_start.$pristine" class="help-block">
+              Enter a time for the share.
+            </p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="time_stop"
+                 class="control-label ">Stopping Time</label>
+          <div class="">
+            <div timepicker
+                 ng-model="event.time_stop"
+                 ng-change="changed()"
+                 hour-step="1"
+                 name="time_stop"
+                 required
+                 minute-step="5"
+                 show-meridian="true">
+            </div>
+            <p ng-show="shareForm.time_stop.$invalid && !shareForm.time_stop.$pristine" class="help-block">
+              Enter a time for the share to end.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <div class="alert alert-danger cs-form-message" ng-show="errorMessage">
+          {{errorMessage}}</div>
+      </div>
+      <div class="row">
+        <div>
+          <button class="btn btn-default" type="submit" ng-click="cancel()">
+            Cancel
+          </button>
+          <button class="btn btn-default" type="submit" ng-click="save()"
+                  ng-disabled="shareForm.$invalid">
+            Save
+          </button>
+        </div>
+      </div>
+
+    </form>
+    
+  </div>
+</div>

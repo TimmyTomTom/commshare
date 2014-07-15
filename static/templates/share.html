@@ -1,0 +1,25 @@
+<div cs-forbidden ng-if="Session.activeUser === undefined">
+</div>
+
+<div ng-if="Session.activeUser !== undefined">
+
+  <h4>Share: {{share.title}}</h4>
+
+  <div class="alert alert-danger" ng-show="errorMessage">{{errorMessage}}</div>
+  
+  <div>{{share.description}}</div>
+
+  <div>Educator: <a href="#/user/{{share.educator.id}}">
+      {{share.educator.name}}
+  </a></div>
+  <div>Community Partner: <a href="#/user/{{share.community_partner.id}}">
+      {{share.community_partner.name}}
+  </a></div>
+
+  <div ng-repeat="evnt in share.events">
+    <div>Location: {{evnt.location}}</div>
+    <div>Starting: {{evnt.datetime_start | date : 'EEEE d MMMM yyyy, h:mm a'}}</div>
+    <div>Stopping: {{evnt.datetime_stop | date : 'EEEE d MMMM yyyy, h:mm a'}}</div>
+  </div>
+
+</div>

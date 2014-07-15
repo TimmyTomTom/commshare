@@ -1,0 +1,23 @@
+<form novalidate
+      action="" role="form" name="educatorSearchSettingsForm" class="form-horizontal">
+  
+  <div class="form-group">
+    <label for="location"
+           class="control-label cs-form-label">ZIP Code</label>
+    <div class="cs-form-control">
+      <input ng-model="properties.search.zipcode"
+             name="zipcode"
+             id="zipcode"
+             required
+             class="form-control"
+             ng-pattern="/^\d{5}(-\d{4})?$/"
+             type="text"/>
+      <p ng-show="educatorSearchSettingsForm.zipcode.$invalid"
+         class="help-block">
+        Please enter a valid ZIP code.
+      </p>
+    </div>
+  </div>
+</form>
+
+<div cs-educator-labels search="properties.search"</div>

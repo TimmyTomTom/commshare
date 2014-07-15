@@ -1,0 +1,157 @@
+@import "bootstrap-3.1.1/less/bootstrap.less";
+
+.clickable {
+    cursor: pointer;
+}
+
+.labelbox {
+    padding: 5px;
+    margin: 5px;
+    float: left;
+    border: solid;
+    border-width: 1px;
+    border-radius: 3px;
+}
+
+.labelbox-selected {
+    background-color: lightblue;
+}
+
+.search-summary {
+    border: solid;
+    border-width: 1px;
+    border-radius: 3px;
+    padding: 5px;
+    margin: 5px;
+}
+
+.map-canvas {
+    height: 200px;
+    width: 200px;
+}
+
+.modal {
+    display: block;
+}
+
+.message-container {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  z-index: 99;
+}
+
+.padded-link {
+    padding-top: 30px;
+}
+
+.cs-form-label {
+    .make-sm-column(4);
+    .make-md-column(3);
+    .make-lg-column(2);
+}
+
+.cs-form-control {
+    .make-sm-column(6);
+    .make-md-column(4);
+    .make-lg-column(3);
+}
+
+.cs-form-message {
+    .make-sm-column(10);
+    .make-md-column(7);
+    .make-lg-column(5);    
+}
+
+.cs-form-button {
+    .make-sm-column-offset(4);
+    .make-md-column-offset(3);
+    .make-lg-column-offset(2);
+}
+
+.search-result {
+    border: solid;
+    border-width: 1px;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 50px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 50px;
+}
+.container {
+    padding-bottom: 20px;
+}
+
+.conversation-block {
+    .make-row();
+}
+
+.conversation-sender {
+    .make-sm-column(2);
+    .make-md-column(2);
+    .make-lg-column(1);
+    margin: 5px;
+    padding: 5px;
+    padding-bottom: 0px;
+}
+
+.conversation-message {
+    .make-sm-column(9);
+    .make-md-column(9);
+    .make-lg-column(10);
+    border: solid;
+    border-width: 1px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.btn-list {
+    margin: 5px;
+}
+
+.tab-content {
+    margin: 10px;
+}
+
+.tab-heading-error {
+    color: red;
+}
+
+.institution-group {
+    background-color: #F0F0F0;
+    padding: 10px;
+    margin: 10px;
+}
+
+.show-linebreaks {
+    white-space: pre-wrap;
+}
+
+// Conversation message highlighting
+
+.highlight1 {
+    background-color: lightblue;
+}
+
+.highlight1 {
+    background-color: lightred;
+}
+
+.profile-image {
+    margin: 20px;
+}

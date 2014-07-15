@@ -1,0 +1,54 @@
+<div class="form-group">
+  <label for="name"
+         class="control-label cs-form-label">Name</label>
+  <div class="cs-form-control">
+    <input ng-model="editedUser.name"
+           required
+           type="text"
+           name="name"
+           id="name"
+           class="form-control"/>
+    <p ng-show="personalSettingsForm.name.$invalid" class="help-block">
+      A name is required.
+    </p>
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="bio"
+         class="control-label cs-form-label">Bio</label>
+  <div class="cs-form-control">
+    <textarea ng-model="editedUser.bio"
+              name="bio"
+              required
+              class="form-control"></textarea>
+    <p ng-show="personalSettingsForm.bio.$invalid" class="help-block">
+      A brief description of yourself is required.
+    </p>
+  </div>
+</div>
+
+  <div class="form-group">
+    <label for="location"
+           class="control-label cs-form-label">ZIP Code</label>
+    <div class="cs-form-control">
+      <input ng-model="editedUser.zipcode"
+             name="zipcode"
+             id="zipcode"
+             required
+             class="form-control"
+             ng-pattern="/^\d{5}(-\d{4})?$/"
+             type="text"/>
+      <p ng-show="personalSettingsForm.zipcode.$invalid"
+         class="help-block">
+        Please enter a valid ZIP code.
+      </p>
+    </div>
+  </div>
+
+<div cs-institutions user="editedUser"
+     is-community-partner="isCommunityPartner"
+     is-educator="isEducator"
+     >
+</div>
+

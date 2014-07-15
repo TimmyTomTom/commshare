@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5 class="panel-title">Search for a User</h5>
+  </div>
+  <div class="panel-body">
+    <form novalidate login-with-auto-fill
+          action="" role="form" name="form" class="form-horizontal">
+      <div class="form-group">
+        <label for="searchText"
+               class="control-label cs-form-label">Email or Name</label>
+        <div class="cs-form-control">
+          <input ng-model="searchText"
+                 name="searchText"
+                 id="searchText"
+                 class="form-control"
+                 type="text"/>
+        </div>
+      </div>
+      <button class="btn cs-form-button" ng-click="searchForUsers()">
+        Search
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h5 class="panel-title">Statistics</h5>
+  </div>
+  <div class="panel-body">
+    <table class="table">
+      <tr><th>Statistics Date</th><td>{{statisticsDate | date: 'mediumDate'}}</td></tr>
+      <tr><th><a href="/#/searchusers">Total Users</a></th><td>{{nTotalUsers}}</td></tr>
+      <tr><th><a href="/#/searchusers?created_start={{daysAgo7 | date: 'yyyyMMdd'}}&created_stop={{tomorrow | date: 'yyyyMMdd'}}">
+            New Users In last 7 days</a></th><td>{{newUsersIn7Days}}</td></tr>
+      <tr><th><a href="/#/searchusers?created_start={{daysAgo30 | date: 'yyyyMMdd'}}&created_stop={{tomorrow | date: 'yyyyMMdd'}}">
+            New Users In last 30 days</a></th><td>{{newUsersIn30Days}}</td></tr>
+      <tr><th><a href="/#/events?start={{now | date: 'yyyyMMdd'}}">
+            Total Upcoming Events</a></th><td>{{nUpcomingEvents}}</td></tr>
+      <tr><th><a href="/#/events?stop={{now | date: 'yyyyMMdd'}}">
+            Total Events Done</a></th><td>{{nTotalEvents}}</td></tr>
+      <tr><th><a href="/#/events?start={{daysAgo7 | date: 'yyyyMMdd'}}&stop={{tomorrow | date: 'yyyyMMdd'}}">
+            Events in last 7 days</a></th>
+        <td>{{eventsIn7Days}}</td></tr>
+      <tr><th><a href="/#/events?start={{daysAgo30 | date: 'yyyyMMdd'}}&stop={{tomorrow | date: 'yyyyMMdd'}}">
+            Events in last 30 days</th></a><td>{{eventsIn30Days}}</td></tr>
+    </table>
+  </div>
+</div>
